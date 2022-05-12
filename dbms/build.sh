@@ -1,27 +1,22 @@
 #!/bin/bash
 
-CONF_PATH=$1
-IMAGE_VERSION=$2
+IMAGE_VERSION=$1
 
 echo "HERO/DBMS build start"
-echo "CONF_PATH : $CONF_PATH"
 echo "IMAGE_VERSION : $IMAGE_VERSION"
 
-echo "docker rmi amuzlabdevelop/hero:was_$IMAGE_VERSION"
-docker rmi amuzlabdevelop/mpp:tsplayer-tr-manager_$IMAGE_VERSION
+echo "docker rmi aosvj1/hero:dbms_$IMAGE_VERSION"
+docker rmi aosvj1/hero:dbms_$IMAGE_VERSION
 
-echo "docker build -t amuzlabdevelop/hero:was_$IMAGE_VERSION ."
-docker build -t amuzlabdevelop/hero:was_$IMAGE_VERSION .
-
-echo "rm -rf ./hero"
-rm -rf ./hero
+echo "docker build -t aosvj1/hero:dbms_$IMAGE_VERSION ."
+docker build -t aosvj1/hero:dbms_$IMAGE_VERSION .
 
 cd ../
 
-echo "rm -f hero-was_$IMAGE_VERSION.tar.gz"
-rm -f hero-was_$IMAGE_VERSION.tar.gz
+echo "rm -f hero-dbms_$IMAGE_VERSION.tar.gz"
+rm -f hero-dbms_$IMAGE_VERSION.tar.gz
 
-echo "docker save amuzlabdevelop/hero:was_$IMAGE_VERSION | gzip > hero-was_$IMAGE_VERSION.tar.gz"
-docker save amuzlabdevelop/hero:was_$IMAGE_VERSION | gzip > hero-was_$IMAGE_VERSION.tar.gz
+echo "docker save aosvj1/hero:dbms_$IMAGE_VERSION | gzip > hero-dbms_$IMAGE_VERSION.tar.gz"
+docker save aosvj1/hero:dbms_$IMAGE_VERSION | gzip > hero-dbms_$IMAGE_VERSION.tar.gz
 
 echo "HERO/DBMS build end"
