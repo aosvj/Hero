@@ -3,7 +3,7 @@ hero SCM project
 
 ## Getting Started
 ```
-git clone -b was/master https://github.com/aosvj/Hero.git hero-was
+git clone -b web/master https://github.com/aosvj/Hero.git hero-web
 npm install
 ```
 
@@ -18,17 +18,17 @@ npm install
 
 ### Branch naming convention
 ```
-git branch was/develop
+git branch web/develop
 
-ex) git branch was/master
-ex) git branch was/develop
+ex) git branch web/master
+ex) git branch web/develop
 ```
 
 ### Annotated tag naming convention
 ```
-git tag -a hero/was/<tag name>
+git tag -a hero/web/<tag name>
 
-ex) git tag -a hero/was/1.0.0
+ex) git tag -a hero/web/1.0.0
 ```
 
 ### Create docs

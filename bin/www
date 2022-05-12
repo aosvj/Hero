@@ -1,0 +1,58 @@
+'use strict'
+
+const path = require('path'),
+    fs = require('fs'),
+
+const http = require('http')//,
+//    config = require('../config'),
+//    logger = require('winston')(Object.assign({}, config.log))
+    
+//const app = require('../app')
+
+//logger.info('server config : %s', JSON.stringify(config, null, '\t'))
+
+app.set('port', 8080)
+
+//const server = http.createServer(app),
+const server = http.createServer(app)
+
+server.timeout = 0
+server.listen(config.port, '0.0.0.0')
+server
+    .on(
+        'err',
+        err => {
+            if (err.syscall !== 'listen') {
+                throw err;
+            }
+
+            let bind = typeof config.port === 'string' ? 'Pipe ' + config.port : 'Port ' + config.port;
+
+            switch (err.code) {
+                case 'EACCES':
+                case 'EADDRINUSE':
+                    process.exit(1);
+                    break;
+                default:
+                    throw err;
+            }
+        })
+    .on(
+        'listening',
+        () => logger.info('server start(port: %d)', server.address().port))
+    .on(
+        'close',
+        () => logger.info('server close (port : %d)', server.address().port))
+//    .on(
+//        'clientError',
+//        (err, socket) => logger.error(`client error HTTP 400 BAD Request (err : ${err.message})`))
+
+
+process
+    .on(
+        'unhandledRejection',
+        //err => logger.error('unhandledRejection %s', err.stack))
+        err => logger.error('unhandledRejection %s %s', err, err.stack))
+    .on(
+        'uncaughtException',
+        err => logger.error('uncaughtException %s', err.stack))
